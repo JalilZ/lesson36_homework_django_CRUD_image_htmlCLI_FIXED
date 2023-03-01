@@ -20,7 +20,7 @@
     <div class="input-group">
         <input type="text" placeholder="Student Name" class="form-control" id="sname">
         <input type="number" placeholder="Student Age" class="form-control" id="sage">
-        <!--form - for file POST request-->
+        <!--form - for file POST request  EYAL: this form is not necessary! do it without it should work !!-->
         <form action="/upload" method="POST" enctype="multipart/form-data">
             <input type="file" placeholder="Profile Picture" class="form-control" id="spic">
         </form>
@@ -80,10 +80,13 @@
         }
 
         const upstudent = (id) => {
-            const formData = new FormData();
+            const formData = new FormData();        //  FormData is a class in browser (type is array, so we can append it),
+                                                    //  we access it via JS, we save it in parameter formData
+                                                    //  formdata is an array (will include 3 elements in our case)
+                                                    //  once we append the array, we put/post to server as we typically know.
             formData.append("name", sname.value);
             formData.append("age", sage.value);
-            formData.append("image", spic.files[0]);
+            formData.append("image", spic.files[0]); //append only the first picture the user uploaded (don't append more if the user uploaded many)
 
             axios.put(MY_SERVER + id, formData).then(result => {
                 console.log(result.data);
