@@ -20,11 +20,7 @@
     <div class="input-group">
         <input type="text" placeholder="Student Name" class="form-control" id="sname">
         <input type="number" placeholder="Student Age" class="form-control" id="sage">
-        <!--form - for file POST request  EYAL: this form is not necessary! do it without it should work !!-->
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" placeholder="Profile Picture" class="form-control" id="spic">
-        </form>
-        <!--/form - for file POST request-->
+        <input type="file" placeholder="Profile Picture" class="form-control" id="spic">
         <button type="button" class="btn btn-outline-primary" onclick="addstudent()">Add</button>
     </div>
 

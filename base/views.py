@@ -19,7 +19,7 @@ def students(req, id=-1):
             try:
                 stu = Student.objects.get(id=id)
                 return Response(StudentSerializer(stu,many=False).data)
-                #return Response({'id': stu.id,'name': stu.name, 'age': stu.age, 'createdTime': stu.createdTime})
+                #return Response({'id': stu.id, 'name': stu.name, 'age': stu.age, 'createdTime': stu.createdTime, 'image': f'/images{stu.image}'})
             except Student.DoesNotExist:
                 return Response('Not Found')
               
@@ -35,18 +35,20 @@ def students(req, id=-1):
     elif req.method == 'DELETE':
         try:
             stu = Student.objects.get(id=id)
+            #stu.delete()                         # works also
+            #return Response('deleted')           # works also
         except Student.DoesNotExist:
             return Response('Not Found')
 
         temp_name = Student.objects.get(id=id).name     
-        Student.objects.get(id=id).delete()
+        Student.objects.get(id=id).delete()            # or stu.delete()
         return Response(f'Student {temp_name} was deleted.')
 
     elif req.method =='POST':
         stu = StudentSerializer(data=req.data)
         if stu.is_valid():
             stu.save()       # save the stu to the database table
-            stu_name = stu.data.get('name')
+            stu_name = stu.data.get('name') # get is a method from .serializers () along with update copy clear .....
             return Response (f'Student {stu_name} was added')
         else:
             return Response (stu.errors)

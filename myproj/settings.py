@@ -129,7 +129,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-STATIC_URL = '/static/'                 # IMAGE upload - Django4Kids
+STATIC_URL = '/static/'                 
 MEDIA_URL = '/images/'                  # IMAGE upload - Django4Kids
 STATICFILES_DIRS = [                    # IMAGE upload - Django4Kids
     BASE_DIR / 'static',
